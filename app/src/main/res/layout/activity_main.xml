@@ -1,44 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvTodoItems"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
     <LinearLayout
         android:id="@+id/ll1"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_weight="0"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/etTodoTitle"
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:layout_marginHorizontal="10dp"
             android:layout_height="wrap_content"
-            android:background="@android:color/holo_blue_dark"
-            android:textColor="@color/white"
-            android:text="Hello World!" />
+            android:hint="Enter Todo" />
+
+        <Button
+            android:id="@+id/btnAddTodo"
+            android:layout_weight="1"
+            android:layout_marginHorizontal="5dp"
+            android:layout_width="0dp"
+            android:padding="0dp"
+            android:layout_height="wrap_content"
+            android:text="Add" />
+
+        <Button
+            android:id="@+id/btnDeleteDoneTodos"
+            android:layout_weight="1"
+            android:layout_marginHorizontal="5dp"
+            android:padding="0dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Delete" />
+
     </LinearLayout>
-
-    <LinearLayout
-        android:layout_alignStart="@+id/ll1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="4"
-        android:background="@android:color/holo_green_dark"
-        android:textColor="@color/white"
-        android:text="Hello World!" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:background="@android:color/holo_red_dark"
-        android:textColor="@color/white"
-        android:text="Olá Mundo!" />
-    </LinearLayout>
-
-</RelativeLayout>
+</LinearLayout>
