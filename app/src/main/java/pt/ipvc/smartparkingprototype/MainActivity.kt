@@ -7,6 +7,7 @@ import android.widget.Toast
 import android.widget.Toast.LENGTH_SHORT
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.toolbar.*
 
 class MainActivity : AppCompatActivity(), TodoAdapter.OnItemClickListener {
 
@@ -14,6 +15,9 @@ class MainActivity : AppCompatActivity(), TodoAdapter.OnItemClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        setSupportActionBar(toolbar)
+
         setContentView(R.layout.activity_main)
 
         val message = intent.getStringExtra(EXTRA_MESSAGE)
