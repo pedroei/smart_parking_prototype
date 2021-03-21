@@ -2,6 +2,7 @@ package pt.ipvc.smartparkingprototype
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.AlarmClock.EXTRA_MESSAGE
 import android.widget.Toast
 import android.widget.Toast.LENGTH_SHORT
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,10 +16,14 @@ class MainActivity : AppCompatActivity(), TodoAdapter.OnItemClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val message = intent.getStringExtra(EXTRA_MESSAGE)
+
         todoAdapter = TodoAdapter(mutableListOf(), this)
 
         rvTodoItems.adapter = todoAdapter
         rvTodoItems.layoutManager = LinearLayoutManager(this)
+
+        if (message != null) todoAdapter.addTodo(Todo(message))
 
         btnAddTodo.setOnClickListener {
             val todoTitle = etTodoTitle.text.toString()
