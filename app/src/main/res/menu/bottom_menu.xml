@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/mapFragment"
+        android:title="Map"
+        android:icon="@drawable/ic_map" />
+
+    <item
+        android:id="@+id/lotsFragment"
+        android:title="Lots"
+        android:icon="@drawable/ic_lotts" />
+
+    <item
+        android:id="@+id/qrCodeFragment"
+        android:title="QR Code"
+        android:icon="@drawable/ic_qr_code" />
+</menu>
