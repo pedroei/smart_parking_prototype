@@ -10,23 +10,62 @@
         layout="@layout/toolbar"
         android:id="@+id/toolbarMain" />
 
-    <fragment
-        android:id="@+id/fragment"
-        android:name="androidx.navigation.fragment.NavHostFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:defaultNavHost="true"
-        android:layout_centerInParent="true"
-        android:layout_below="@id/toolbarMain"
-        android:layout_above="@id/bnv"
-        app:navGraph="@navigation/my_nav" />
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bnv"
-        android:layout_width="match_parent"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_map"
+        android:visibility="invisible"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:layout_alignParentEnd="true"
+        android:layout_above="@+id/fab_add"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginBottom="24dp"
+        android:backgroundTint="@color/blueAcc"
+        android:clickable="true"
+        android:focusable="true"
+        app:tint="@android:color/white"
+        app:srcCompat="@drawable/ic_map" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_lots"
+        android:visibility="invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:layout_alignParentEnd="true"
+        android:layout_above="@id/fab_map"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginVertical="16dp"
+        android:focusable="true"
+        android:backgroundTint="@color/blueAcc"
+        app:tint="@color/white"
+        app:srcCompat="@drawable/ic_lotts" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_qr_code"
+        android:visibility="invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_above="@id/fab_lots"
+        android:layout_marginHorizontal="24dp"
+        android:focusable="true"
+        android:backgroundTint="@color/blueAcc"
+        app:tint="@color/white"
+        android:clickable="true"
+        app:srcCompat="@drawable/ic_qr_code" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        app:menu="@menu/bottom_menu" />
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginBottom="24dp"
+        android:backgroundTint="@color/blueAcc"
+        android:clickable="true"
+        android:focusable="true"
+        app:tint="@android:color/white"
+        app:srcCompat="@drawable/ic_plus" />
 
 </RelativeLayout>
