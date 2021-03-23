@@ -10,6 +10,16 @@
         layout="@layout/toolbar"
         android:id="@+id/toolbarMain" />
 
+    <GridView
+        android:id="@+id/gvParks"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbarMain"
+        android:columnWidth="150dp"
+        android:horizontalSpacing="15dp"
+        android:numColumns="auto_fit"
+        android:verticalSpacing="15dp"/>
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_map"
         android:visibility="invisible"
