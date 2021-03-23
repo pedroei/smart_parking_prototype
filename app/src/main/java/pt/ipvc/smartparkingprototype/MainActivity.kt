@@ -1,5 +1,6 @@
 package pt.ipvc.smartparkingprototype
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.AlarmClock.EXTRA_MESSAGE
@@ -17,6 +18,8 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar.*
 import pt.ipvc.smartparkingprototype.adapters.ParkingLotAdapter
 import pt.ipvc.smartparkingprototype.models.ParkingLotItem
+
+const val EXTRA_PARKING_LOT = "Parking lot item"
 
 class MainActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
 
@@ -123,6 +126,12 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
     // Click on grid item
     override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
         val items:ParkingLotItem = arrayList!!.get(position)
+
+        val intent = Intent(this, ParkingSlotsActivity::class.java).apply {
+            putExtra(EXTRA_PARKING_LOT, items)
+        }
+        startActivity(intent)
+
         Toast.makeText(applicationContext, "${items.name} with capacity of ${items.slots}", LENGTH_SHORT).show()
     }
 }
