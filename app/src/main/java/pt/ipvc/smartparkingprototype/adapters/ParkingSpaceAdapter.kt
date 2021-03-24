@@ -1,5 +1,6 @@
 package pt.ipvc.smartparkingprototype.adapters
 
+import android.content.DialogInterface
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -8,7 +9,11 @@ import android.widget.Toast
 import android.widget.Toast.LENGTH_SHORT
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.snackbar.Snackbar
+import kotlinx.android.synthetic.main.activity_parking_slots.view.*
 import kotlinx.android.synthetic.main.item_parking_space.view.*
+import kotlinx.android.synthetic.main.item_parking_space_slot.view.*
 import pt.ipvc.smartparkingprototype.R
 import pt.ipvc.smartparkingprototype.models.ParkingSpaceSection
 
@@ -59,13 +64,20 @@ class ParkingSpaceAdapter(
         holder.itemView.rviewSlots.apply {
             layoutManager = childLayoutManager
             adapter = ParkingSlotAdapter(parkingSpaces.get(position), View.OnClickListener {
-                val pos = it?.tag as Int
-                val data = parkingSpaces[position].slots?.get(pos)
-                Toast.makeText(
-                    context,
-                    "CLICK !! ${data?.slot}",
-                    LENGTH_SHORT
-                ).show()
+                val lot = parkingSpaces[position].idLot
+                val section = parkingSpaces[position].code
+                val slot = it.tvParkingSlotTitle.text.removePrefix("Slot ")
+
+                MaterialAlertDialogBuilder(context)
+                    .setTitle("Alert")
+                    .setMessage("Are you sure you want to book the space $section-$slot in $lot?")
+                    .setNegativeButton("No") { dialogInterface: DialogInterface, i: Int ->
+                        Snackbar.make(holder.itemView,"Canceled", Snackbar.LENGTH_SHORT).show()
+                    }
+                    .setPositiveButton("Yes") { dialogInterface: DialogInterface, i: Int ->
+                        Snackbar.make(holder.itemView, "Booked $section-$slot", Snackbar.LENGTH_SHORT).show()
+                    }
+                    .show()
             })
             setRecycledViewPool(viewPool)
         }

@@ -106,56 +106,71 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
 
     private fun setDataList(): ArrayList<ParkingLotItem> {
 
+        /* Slots */
         val slotsList1: ArrayList<ParkingSpaceItem> = ArrayList()
-        slotsList1.add(ParkingSpaceItem(1, false))
-        slotsList1.add(ParkingSpaceItem(2, false))
-        slotsList1.add(ParkingSpaceItem(3, true))
+        slotsList1.add(ParkingSpaceItem(1, 1,false, 1))
+        slotsList1.add(ParkingSpaceItem(2, 2,false, 1))
+        slotsList1.add(ParkingSpaceItem(3, 3,true, 1))
 
         val slotsList2: ArrayList<ParkingSpaceItem> = ArrayList()
-        slotsList2.add(ParkingSpaceItem(1, false))
-        slotsList2.add(ParkingSpaceItem(2, false))
-        slotsList2.add(ParkingSpaceItem(3, false))
+        slotsList2.add(ParkingSpaceItem(4, 1, false, 5))
+        slotsList2.add(ParkingSpaceItem(5, 2, false, 5))
+        slotsList2.add(ParkingSpaceItem(6, 3, false, 5))
 
         val slotsList3: ArrayList<ParkingSpaceItem> = ArrayList()
-        slotsList3.add(ParkingSpaceItem(1, false))
-        slotsList3.add(ParkingSpaceItem(2, true))
-        slotsList3.add(ParkingSpaceItem(3, true))
+        slotsList3.add(ParkingSpaceItem(7, 1, false, 2))
+        slotsList3.add(ParkingSpaceItem(8, 2, true, 2))
+        slotsList3.add(ParkingSpaceItem(9, 3, true, 2))
 
         val slotsList4: ArrayList<ParkingSpaceItem> = ArrayList()
-        slotsList4.add(ParkingSpaceItem(1, true))
-        slotsList4.add(ParkingSpaceItem(2, false))
-        slotsList4.add(ParkingSpaceItem(3, true))
+        slotsList4.add(ParkingSpaceItem(10, 1, true, 3))
+        slotsList4.add(ParkingSpaceItem(11, 2, false, 3))
+        slotsList4.add(ParkingSpaceItem(12, 3, true, 3))
 
         val slotsList5: ArrayList<ParkingSpaceItem> = ArrayList()
-        slotsList5.add(ParkingSpaceItem(1, true))
-        slotsList5.add(ParkingSpaceItem(2, true))
-        slotsList5.add(ParkingSpaceItem(3, true))
+        slotsList5.add(ParkingSpaceItem(13, 1, true, 4))
+        slotsList5.add(ParkingSpaceItem(14, 2, true, 4))
+        slotsList5.add(ParkingSpaceItem(15, 3, true, 4))
 
+        val slotsList6: ArrayList<ParkingSpaceItem> = ArrayList()
+        slotsList6.add(ParkingSpaceItem(16, 1,false, 7))
+        slotsList6.add(ParkingSpaceItem(17, 2,false, 7))
+        slotsList6.add(ParkingSpaceItem(18, 3,true, 7))
+
+        val slotsList7: ArrayList<ParkingSpaceItem> = ArrayList()
+        slotsList7.add(ParkingSpaceItem(19, 1,false, 8))
+        slotsList7.add(ParkingSpaceItem(20, 2,false, 8))
+        slotsList7.add(ParkingSpaceItem(21, 3,true, 8))
+
+        val slotsList8: ArrayList<ParkingSpaceItem> = ArrayList()
+        slotsList8.add(ParkingSpaceItem(22, 1,false, 6))
+        slotsList8.add(ParkingSpaceItem(23, 2,false, 6))
+        slotsList8.add(ParkingSpaceItem(24, 3,true, 6))
+
+        /* Sections */
         val sectionList1: ArrayList<ParkingSpaceSection> = ArrayList()
-        sectionList1.add(ParkingSpaceSection("A", slotsList1))
-        sectionList1.add(ParkingSpaceSection("B", slotsList3))
+        sectionList1.add(ParkingSpaceSection(1, "A", slotsList1, 4))
+        sectionList1.add(ParkingSpaceSection(2, "B", slotsList3, 4))
 
         val sectionList2: ArrayList<ParkingSpaceSection> = ArrayList()
-        sectionList2.add(ParkingSpaceSection("A", slotsList4))
-        sectionList2.add(ParkingSpaceSection("B", slotsList5))
-        sectionList2.add(ParkingSpaceSection("C", slotsList2))
+        sectionList2.add(ParkingSpaceSection(3, "A", slotsList4, 2))
+        sectionList2.add(ParkingSpaceSection(4, "B", slotsList5, 2))
+        sectionList2.add(ParkingSpaceSection(5, "C", slotsList2, 2))
 
+        val sectionList3: ArrayList<ParkingSpaceSection> = ArrayList()
+        sectionList3.add(ParkingSpaceSection(6, "A", slotsList8, 1))
+        sectionList3.add(ParkingSpaceSection(7, "B", slotsList6, 1))
+
+        val sectionList4: ArrayList<ParkingSpaceSection> = ArrayList()
+        sectionList4.add(ParkingSpaceSection(8, "A", slotsList7, 3))
+
+        /* Lots */
         val arrayList: ArrayList<ParkingLotItem> = ArrayList()
+        arrayList.add(ParkingLotItem(1, "1º de Maio", R.drawable.pe1, "Viana do Castelo", "Open 24 hours", sectionList3))
+        arrayList.add(ParkingLotItem(2, "Campo da Agonia", R.drawable.pe2, "Viana do Castelo", "Open 24 hours", sectionList2))
+        arrayList.add(ParkingLotItem(3, "Gil Eanes", R.drawable.pe3, "Viana do Castelo", "Open 24 hours", sectionList4))
+        arrayList.add(ParkingLotItem(4, "Braga Parque", R.drawable.pe1, "Braga", "Open 24 hours", sectionList1))
 
-        arrayList.add(ParkingLotItem("1º de Maio", R.drawable.pe1, "Viana do Castelo", "Open 24 hours", sectionList1))
-        arrayList.add(ParkingLotItem("Campo da Agonia", R.drawable.pe2, "Viana do Castelo", "Open 24 hours", sectionList2))
-        arrayList.add(ParkingLotItem("Gil Eanes", R.drawable.pe3, "Viana do Castelo", "Open 24 hours", sectionList1))
-        arrayList.add(ParkingLotItem("Braga Parque", R.drawable.pe1, "Braga", "Open 24 hours", sectionList2))
-
-        arrayList.add(ParkingLotItem("1º de Maio", R.drawable.pe1, "Viana do Castelo", "Open 24 hours",sectionList1))
-        arrayList.add(ParkingLotItem("Campo da Agonia", R.drawable.pe2, "Viana do Castelo", "Open 24 hours",sectionList2))
-        arrayList.add(ParkingLotItem("Gil Eanes", R.drawable.pe3, "Viana do Castelo", "Open 24 hours",sectionList1))
-        arrayList.add(ParkingLotItem("Braga Parque", R.drawable.pe1, "Braga", "Open 24 hours",sectionList2))
-
-        arrayList.add(ParkingLotItem("1º de Maio", R.drawable.pe1, "Viana do Castelo", "Open 24 hours",sectionList1))
-        arrayList.add(ParkingLotItem("Campo da Agonia", R.drawable.pe2, "Viana do Castelo", "Open 24 hours",sectionList2))
-        arrayList.add(ParkingLotItem("Gil Eanes", R.drawable.pe3, "Viana do Castelo", "Open 24 hours",sectionList1))
-        arrayList.add(ParkingLotItem("Braga Parque", R.drawable.pe1, "Braga", "Open 24 hours",sectionList2))
 
         return arrayList
     }
