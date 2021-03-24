@@ -18,6 +18,8 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar.*
 import pt.ipvc.smartparkingprototype.adapters.ParkingLotAdapter
 import pt.ipvc.smartparkingprototype.models.ParkingLotItem
+import pt.ipvc.smartparkingprototype.models.ParkingSpaceItem
+import pt.ipvc.smartparkingprototype.models.ParkingSpaceSection
 
 const val EXTRA_PARKING_LOT = "Parking lot item"
 
@@ -103,22 +105,57 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
     }
 
     private fun setDataList(): ArrayList<ParkingLotItem> {
+
+        val slotsList1: ArrayList<ParkingSpaceItem> = ArrayList()
+        slotsList1.add(ParkingSpaceItem(1, false))
+        slotsList1.add(ParkingSpaceItem(2, false))
+        slotsList1.add(ParkingSpaceItem(3, true))
+
+        val slotsList2: ArrayList<ParkingSpaceItem> = ArrayList()
+        slotsList2.add(ParkingSpaceItem(1, false))
+        slotsList2.add(ParkingSpaceItem(2, false))
+        slotsList2.add(ParkingSpaceItem(3, false))
+
+        val slotsList3: ArrayList<ParkingSpaceItem> = ArrayList()
+        slotsList3.add(ParkingSpaceItem(1, false))
+        slotsList3.add(ParkingSpaceItem(2, true))
+        slotsList3.add(ParkingSpaceItem(3, true))
+
+        val slotsList4: ArrayList<ParkingSpaceItem> = ArrayList()
+        slotsList4.add(ParkingSpaceItem(1, true))
+        slotsList4.add(ParkingSpaceItem(2, false))
+        slotsList4.add(ParkingSpaceItem(3, true))
+
+        val slotsList5: ArrayList<ParkingSpaceItem> = ArrayList()
+        slotsList5.add(ParkingSpaceItem(1, true))
+        slotsList5.add(ParkingSpaceItem(2, true))
+        slotsList5.add(ParkingSpaceItem(3, true))
+
+        val sectionList1: ArrayList<ParkingSpaceSection> = ArrayList()
+        sectionList1.add(ParkingSpaceSection("A", slotsList1))
+        sectionList1.add(ParkingSpaceSection("B", slotsList3))
+
+        val sectionList2: ArrayList<ParkingSpaceSection> = ArrayList()
+        sectionList2.add(ParkingSpaceSection("A", slotsList4))
+        sectionList2.add(ParkingSpaceSection("B", slotsList5))
+        sectionList2.add(ParkingSpaceSection("C", slotsList2))
+
         val arrayList: ArrayList<ParkingLotItem> = ArrayList()
 
-        arrayList.add(ParkingLotItem("1º de Maio", R.drawable.pe1, "Viana do Castelo", "Open 24 hours", 1))
-        arrayList.add(ParkingLotItem("Campo da Agonia", R.drawable.pe2, "Viana do Castelo", "Open 24 hours", 1))
-        arrayList.add(ParkingLotItem("Gil Eanes", R.drawable.pe3, "Viana do Castelo", "Open 24 hours", 1))
-        arrayList.add(ParkingLotItem("Braga Parque", R.drawable.pe1, "Braga", "Open 24 hours", 1))
+        arrayList.add(ParkingLotItem("1º de Maio", R.drawable.pe1, "Viana do Castelo", "Open 24 hours", sectionList1))
+        arrayList.add(ParkingLotItem("Campo da Agonia", R.drawable.pe2, "Viana do Castelo", "Open 24 hours", sectionList2))
+        arrayList.add(ParkingLotItem("Gil Eanes", R.drawable.pe3, "Viana do Castelo", "Open 24 hours", sectionList1))
+        arrayList.add(ParkingLotItem("Braga Parque", R.drawable.pe1, "Braga", "Open 24 hours", sectionList2))
 
-        arrayList.add(ParkingLotItem("1º de Maio", R.drawable.pe1, "Viana do Castelo", "Open 24 hours",1))
-        arrayList.add(ParkingLotItem("Campo da Agonia", R.drawable.pe2, "Viana do Castelo", "Open 24 hours",1))
-        arrayList.add(ParkingLotItem("Gil Eanes", R.drawable.pe3, "Viana do Castelo", "Open 24 hours",1))
-        arrayList.add(ParkingLotItem("Braga Parque", R.drawable.pe1, "Braga", "Open 24 hours",1))
+        arrayList.add(ParkingLotItem("1º de Maio", R.drawable.pe1, "Viana do Castelo", "Open 24 hours",sectionList1))
+        arrayList.add(ParkingLotItem("Campo da Agonia", R.drawable.pe2, "Viana do Castelo", "Open 24 hours",sectionList2))
+        arrayList.add(ParkingLotItem("Gil Eanes", R.drawable.pe3, "Viana do Castelo", "Open 24 hours",sectionList1))
+        arrayList.add(ParkingLotItem("Braga Parque", R.drawable.pe1, "Braga", "Open 24 hours",sectionList2))
 
-        arrayList.add(ParkingLotItem("1º de Maio", R.drawable.pe1, "Viana do Castelo", "Open 24 hours",1))
-        arrayList.add(ParkingLotItem("Campo da Agonia", R.drawable.pe2, "Viana do Castelo", "Open 24 hours",1))
-        arrayList.add(ParkingLotItem("Gil Eanes", R.drawable.pe3, "Viana do Castelo", "Open 24 hours",1))
-        arrayList.add(ParkingLotItem("Braga Parque", R.drawable.pe1, "Braga", "Open 24 hours",1))
+        arrayList.add(ParkingLotItem("1º de Maio", R.drawable.pe1, "Viana do Castelo", "Open 24 hours",sectionList1))
+        arrayList.add(ParkingLotItem("Campo da Agonia", R.drawable.pe2, "Viana do Castelo", "Open 24 hours",sectionList2))
+        arrayList.add(ParkingLotItem("Gil Eanes", R.drawable.pe3, "Viana do Castelo", "Open 24 hours",sectionList1))
+        arrayList.add(ParkingLotItem("Braga Parque", R.drawable.pe1, "Braga", "Open 24 hours",sectionList2))
 
         return arrayList
     }
@@ -131,7 +168,5 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
             putExtra(EXTRA_PARKING_LOT, items)
         }
         startActivity(intent)
-
-        Toast.makeText(applicationContext, "${items.name} with capacity of ${items.slots}", LENGTH_SHORT).show()
     }
 }
