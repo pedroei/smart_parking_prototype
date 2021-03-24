@@ -15,12 +15,15 @@ import kotlinx.android.synthetic.main.activity_parking_slots.view.*
 import kotlinx.android.synthetic.main.item_parking_space.view.*
 import kotlinx.android.synthetic.main.item_parking_space_slot.view.*
 import pt.ipvc.smartparkingprototype.R
+import pt.ipvc.smartparkingprototype.data.ParkingLotData
 import pt.ipvc.smartparkingprototype.models.ParkingSpaceSection
 
 class ParkingSpaceAdapter(
     private val parkingSpaces: ArrayList<ParkingSpaceSection>,
     private val listener: OnItemClickListener)
     : RecyclerView.Adapter<ParkingSpaceAdapter.ParkingSpaceViewHolder>(){
+
+    private var dataClass: ParkingLotData = ParkingLotData()
 
     private val viewPool = RecyclerView.RecycledViewPool()
 
@@ -64,12 +67,12 @@ class ParkingSpaceAdapter(
         holder.itemView.rviewSlots.apply {
             layoutManager = childLayoutManager
             adapter = ParkingSlotAdapter(parkingSpaces.get(position), View.OnClickListener {
-                val lot = parkingSpaces[position].idLot
+                val lot = dataClass.getParkingLotById(parkingSpaces[position].idLot).name
                 val section = parkingSpaces[position].code
                 val slot = it.tvParkingSlotTitle.text.removePrefix("Slot ")
 
                 MaterialAlertDialogBuilder(context)
-                    .setTitle("Alert")
+                    .setTitle("Confirmation")
                     .setMessage("Are you sure you want to book the space $section-$slot in $lot?")
                     .setNegativeButton("No") { dialogInterface: DialogInterface, i: Int ->
                         Snackbar.make(holder.itemView,"Canceled", Snackbar.LENGTH_SHORT).show()
