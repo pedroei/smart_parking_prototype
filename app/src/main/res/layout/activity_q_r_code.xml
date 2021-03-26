@@ -19,6 +19,26 @@
         android:textSize="24sp"
         />
 
+    <TextView
+        android:id="@+id/tvSpaceInfo"
+        android:visibility="invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btnOpenSpace"
+        android:layout_centerHorizontal="true"
+        android:textSize="16sp"
+        android:layout_marginBottom="15dp"
+        />
+
+    <Button
+        android:id="@+id/btnOpenSpace"
+        android:visibility="invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="Open parking spot"
+        />
+
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_map3"

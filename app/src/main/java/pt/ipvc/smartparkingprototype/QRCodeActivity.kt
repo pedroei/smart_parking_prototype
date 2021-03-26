@@ -57,11 +57,19 @@ class QRCodeActivity : AppCompatActivity() {
             val section = dt.getSectionById(space.idSection)
             val parkingLot = dt.getParkingLotById(section?.idLot!!)
 
-            val msg = "Park ${parkingLot.name}, Section ${section.code}, Slot ${space.slot.toString()}"
-            Toast.makeText(applicationContext, msg , LENGTH_SHORT).show()
-        } catch (e: Exception) {
+            val spaceInfo = "Park ${parkingLot.name}, Section ${section.code}, Slot ${space.slot.toString()}"
 
-        }
+            tvNoQRCode.visibility = View.INVISIBLE
+
+            tvSpaceInfo.visibility = View.VISIBLE
+            tvSpaceInfo.text = spaceInfo
+
+            btnOpenSpace.visibility = View.VISIBLE
+
+            btnOpenSpace.setOnClickListener {
+                Toast.makeText(applicationContext, "Activate raspberry light", LENGTH_SHORT).show()
+            }
+        } catch (e: Exception) {}
 
     }
 
