@@ -14,6 +14,7 @@ import android.widget.Toast.LENGTH_SHORT
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar.*
 import pt.ipvc.smartparkingprototype.adapters.ParkingLotAdapter
@@ -71,7 +72,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
         }
 
         fab_lots.setOnClickListener {
-            Toast.makeText(this, "MSG: $message --> Show all lots", Toast.LENGTH_SHORT).show()
+            Snackbar.make(it,"Already in this screen", Snackbar.LENGTH_SHORT).show()
         }
 
         fab_qr_code.setOnClickListener {
@@ -80,7 +81,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
 
     }
 
-    private fun onMapButtonClicked() {
+    fun onMapButtonClicked() {
         setVisibility(clicked)
         setAnimation(clicked)
         clicked =! clicked
