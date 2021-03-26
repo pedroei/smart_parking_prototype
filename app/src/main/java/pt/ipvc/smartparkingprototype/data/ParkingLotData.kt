@@ -8,6 +8,8 @@ import pt.ipvc.smartparkingprototype.models.ParkingSpaceSection
 
 class ParkingLotData {
 
+    var reservedSpace: ParkingSpaceItem? = null;
+
     fun setDataList(): ArrayList<ParkingLotItem> {
 
         /* Slots */
@@ -89,6 +91,31 @@ class ParkingLotData {
         val arrayList:ArrayList<ParkingLotItem> = setDataList()
 
         return arrayList.find { p -> p.id == lotId }!!
+    }
+
+    fun getSectionById(sectionId: Int): ParkingSpaceSection? {
+        val arrayList:ArrayList<ParkingLotItem> = setDataList()
+
+        arrayList.forEach {
+            it.sections.forEach {
+                if (it.id == sectionId) {
+                    return it
+                }
+            }
+        }
+        return null
+    }
+
+    fun reserveSlot(space: ParkingSpaceItem): Boolean {
+        if (this.reservedSpace == null) {
+            this.reservedSpace = space
+            return true
+        }
+        return false
+    }
+
+    fun getReservedSlot(): ParkingSpaceItem {
+        return this.reservedSpace!!
     }
 
 }

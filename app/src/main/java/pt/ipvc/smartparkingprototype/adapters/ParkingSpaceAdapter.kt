@@ -16,14 +16,14 @@ import kotlinx.android.synthetic.main.item_parking_space.view.*
 import kotlinx.android.synthetic.main.item_parking_space_slot.view.*
 import pt.ipvc.smartparkingprototype.R
 import pt.ipvc.smartparkingprototype.data.ParkingLotData
+import pt.ipvc.smartparkingprototype.dt
+import pt.ipvc.smartparkingprototype.models.ParkingSpaceItem
 import pt.ipvc.smartparkingprototype.models.ParkingSpaceSection
 
 class ParkingSpaceAdapter(
     private val parkingSpaces: ArrayList<ParkingSpaceSection>,
     private val listener: OnItemClickListener)
     : RecyclerView.Adapter<ParkingSpaceAdapter.ParkingSpaceViewHolder>(){
-
-    private var dataClass: ParkingLotData = ParkingLotData()
 
     private val viewPool = RecyclerView.RecycledViewPool()
 
@@ -67,7 +67,7 @@ class ParkingSpaceAdapter(
         holder.itemView.rviewSlots.apply {
             layoutManager = childLayoutManager
             adapter = ParkingSlotAdapter(parkingSpaces.get(position), View.OnClickListener {
-                val lot = dataClass.getParkingLotById(parkingSpaces[position].idLot).name
+                val lot = dt.getParkingLotById(parkingSpaces[position].idLot).name
                 val section = parkingSpaces[position].code
                 val slot = it.tvParkingSlotTitle.text.removePrefix("Slot ")
 
@@ -78,7 +78,11 @@ class ParkingSpaceAdapter(
                         Snackbar.make(holder.itemView,"Canceled", Snackbar.LENGTH_SHORT).show()
                     }
                     .setPositiveButton("Yes") { dialogInterface: DialogInterface, i: Int ->
-                        Snackbar.make(holder.itemView, "Booked $section-$slot", Snackbar.LENGTH_SHORT).show()
+                        val intSlot = Integer.parseInt(slot.toString())
+                        val spaceToBeReserved: ParkingSpaceItem = parkingSpaces[position].slots?.get(intSlot - 1)!!
+                        val res = dt.reserveSlot(spaceToBeReserved)
+                        if (res) Snackbar.make(holder.itemView, "Booked $section-$intSlot", Snackbar.LENGTH_SHORT).show()
+                        else Snackbar.make(holder.itemView, "You already have a space reserved", Snackbar.LENGTH_SHORT).show()
                     }
                     .show()
             })

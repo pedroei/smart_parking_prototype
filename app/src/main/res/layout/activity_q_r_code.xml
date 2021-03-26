@@ -4,58 +4,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".QRCodeActivity">
 
     <include
         layout="@layout/toolbar"
         android:id="@+id/toolbarMain" />
 
-    <LinearLayout
-        android:id="@+id/ll1"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/tvNoQRCode"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/toolbarMain"
-        android:layout_marginVertical="10dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="5dp">
-
-        <TextView
-            android:id="@+id/tvTitle2"
-            android:layout_width="0dp"
-            android:layout_weight="6"
-            android:layout_height="wrap_content"
-            android:text="Title"
-            android:textColor="@color/black"
-            android:textSize="22sp" />
-
-        <ImageView
-            android:id="@+id/btnGoMap"
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:layout_weight="1"
-            android:layout_marginTop="1dp"
-            android:src="@drawable/ic_location"
-            android:tint="@color/blueAcc"
-            android:text="Map"/>
-
-    </LinearLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvParkingSpaceItems"
-        android:layout_below="@id/ll1"
-        android:layout_width="match_parent"
-        android:layout_marginHorizontal="15dp"
-        android:layout_height="match_parent" />
+        android:layout_centerInParent="true"
+        android:text="No QRCode available"
+        android:textSize="24sp"
+        />
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_map2"
+        android:id="@+id/fab_map3"
         android:visibility="invisible"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_above="@+id/fab_add2"
+        android:layout_above="@+id/fab_add3"
         android:layout_marginHorizontal="24dp"
         android:layout_marginBottom="24dp"
         android:backgroundTint="@color/blueAcc"
@@ -65,13 +36,13 @@
         app:srcCompat="@drawable/ic_map" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_lots2"
+        android:id="@+id/fab_lots3"
         android:visibility="invisible"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"
         android:layout_alignParentEnd="true"
-        android:layout_above="@id/fab_map2"
+        android:layout_above="@id/fab_map3"
         android:layout_marginHorizontal="24dp"
         android:layout_marginVertical="16dp"
         android:focusable="true"
@@ -80,12 +51,12 @@
         app:srcCompat="@drawable/ic_lotts" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_qr_code2"
+        android:id="@+id/fab_qr_code3"
         android:visibility="invisible"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:layout_above="@id/fab_lots2"
+        android:layout_above="@id/fab_lots3"
         android:layout_marginHorizontal="24dp"
         android:focusable="true"
         android:backgroundTint="@color/blueAcc"
@@ -94,7 +65,7 @@
         app:srcCompat="@drawable/ic_qr_code" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_add2"
+        android:id="@+id/fab_add3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"

@@ -25,6 +25,7 @@ import pt.ipvc.smartparkingprototype.models.ParkingSpaceSection
 
 const val EXTRA_PARKING_LOT = "Parking lot item"
 const val EXTRA_PARKING_GEO = "Parking lot lat and long"
+var dt = ParkingLotData()
 
 class MainActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
 
@@ -32,7 +33,7 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
     private var gridView:GridView ? = null
     private var parkingLotAdapter:ParkingLotAdapter ? = null
 
-    private var dataClass: ParkingLotData = ParkingLotData()
+    var dataClass: ParkingLotData = ParkingLotData()
 
     private val rotateOpen: Animation by lazy { AnimationUtils.loadAnimation(this, R.anim.rotate_open_anim) }
     private val rotateClose: Animation by lazy { AnimationUtils.loadAnimation(this, R.anim.rotate_close_anim) }
@@ -76,7 +77,8 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
         }
 
         fab_qr_code.setOnClickListener {
-            Toast.makeText(this, "MSG: $message --> QR Code", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, QRCodeActivity::class.java)
+            startActivity(intent)
         }
 
     }

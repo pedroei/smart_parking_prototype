@@ -62,14 +62,13 @@ class ParkingSlotsActivity : AppCompatActivity(), ParkingSpaceAdapter.OnItemClic
         }
 
         fab_lots2.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java).apply {
-
-            }
+            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
 
         fab_qr_code2.setOnClickListener {
-            Toast.makeText(this, "Go to QR Code", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, QRCodeActivity::class.java)
+            startActivity(intent)
         }
 
     }
