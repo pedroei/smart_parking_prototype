@@ -23,6 +23,7 @@ import pt.ipvc.smartparkingprototype.models.ParkingSpaceItem
 import pt.ipvc.smartparkingprototype.models.ParkingSpaceSection
 
 const val EXTRA_PARKING_LOT = "Parking lot item"
+const val EXTRA_PARKING_GEO = "Parking lot lat and long"
 
 class MainActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
 
@@ -62,7 +63,11 @@ class MainActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
         }
 
         fab_map.setOnClickListener{
-            Toast.makeText(this, "MSG: $message --> This is the map", Toast.LENGTH_SHORT).show()
+            val emptyLot = ParkingLotItem()
+            val intent = Intent(this, MapsActivity::class.java).apply {
+                putExtra(EXTRA_PARKING_GEO, emptyLot)
+            }
+            startActivity(intent)
         }
 
         fab_lots.setOnClickListener {

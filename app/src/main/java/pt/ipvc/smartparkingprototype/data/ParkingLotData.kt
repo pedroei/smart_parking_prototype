@@ -1,6 +1,7 @@
 package pt.ipvc.smartparkingprototype.data
 
 import pt.ipvc.smartparkingprototype.R
+import pt.ipvc.smartparkingprototype.models.Coordinates
 import pt.ipvc.smartparkingprototype.models.ParkingLotItem
 import pt.ipvc.smartparkingprototype.models.ParkingSpaceItem
 import pt.ipvc.smartparkingprototype.models.ParkingSpaceSection
@@ -67,12 +68,18 @@ class ParkingLotData {
         val sectionList4: ArrayList<ParkingSpaceSection> = ArrayList()
         sectionList4.add(ParkingSpaceSection(8, "A", slotsList7, 3))
 
+        /* Coordinates */
+        val coordinates_1_maio = Coordinates(41.69546913970562, -8.82892591713366)
+        val coordinates_campo_agonia = Coordinates(41.691572004150586, -8.836688477030924)
+        val coordinates_gil_eanes = Coordinates(41.68979067792167, -8.830456039883426)
+        val coordinates_barga_parque = Coordinates(41.55766747202138, -8.407030445902803)
+
         /* Lots */
         val arrayList: ArrayList<ParkingLotItem> = ArrayList()
-        arrayList.add(ParkingLotItem(1, "1º de Maio", R.drawable.pe1, "Viana do Castelo", "Open 24 hours", sectionList3))
-        arrayList.add(ParkingLotItem(2, "Campo da Agonia", R.drawable.pe2, "Viana do Castelo", "Open 24 hours", sectionList2))
-        arrayList.add(ParkingLotItem(3, "Gil Eanes", R.drawable.pe3, "Viana do Castelo", "Open 24 hours", sectionList4))
-        arrayList.add(ParkingLotItem(4, "Braga Parque", R.drawable.pe1, "Braga", "Open 24 hours", sectionList1))
+        arrayList.add(ParkingLotItem(1, "1º de Maio", R.drawable.pe1, "Viana do Castelo", "Open 24 hours", sectionList3, coordinates_1_maio))
+        arrayList.add(ParkingLotItem(2, "Campo da Agonia", R.drawable.pe2, "Viana do Castelo", "Open 24 hours", sectionList2, coordinates_campo_agonia))
+        arrayList.add(ParkingLotItem(3, "Gil Eanes", R.drawable.pe3, "Viana do Castelo", "Open 24 hours", sectionList4, coordinates_gil_eanes))
+        arrayList.add(ParkingLotItem(4, "Braga Parque", R.drawable.pe1, "Braga", "Open 24 hours", sectionList1, coordinates_barga_parque))
 
 
         return arrayList

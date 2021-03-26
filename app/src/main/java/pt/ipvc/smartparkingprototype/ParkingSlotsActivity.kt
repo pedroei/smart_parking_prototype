@@ -1,5 +1,6 @@
 package pt.ipvc.smartparkingprototype
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -25,6 +26,13 @@ class ParkingSlotsActivity : AppCompatActivity(), ParkingSpaceAdapter.OnItemClic
             parkingSpaceAdapter = ParkingSpaceAdapter(parkingLot!!.sections, this)
             rvParkingSpaceItems.adapter = parkingSpaceAdapter
             rvParkingSpaceItems.layoutManager = LinearLayoutManager(this)
+        }
+
+        btnGoMap.setOnClickListener{
+            val intent = Intent(this, MapsActivity::class.java).apply {
+                putExtra(EXTRA_PARKING_GEO, parkingLot)
+            }
+            startActivity(intent)
         }
 
     }
