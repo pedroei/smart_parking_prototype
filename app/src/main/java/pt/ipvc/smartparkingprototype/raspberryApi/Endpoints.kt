@@ -6,8 +6,8 @@ import retrofit2.http.*
 
 interface Endpoints {
 
-    @PATCH("/pins/{id}")
+    @GET("/{id}/{state}")
     fun changeLightState(@Path("id") id: Int,
-                         @Body body: LightStateRequest
+                         @Path("state") state: String
     ): Call<Pin>
 }

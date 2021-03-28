@@ -19,12 +19,21 @@
         android:textSize="24sp"
         />
 
+    <ImageView
+        android:id="@+id/ivQRCode"
+        android:visibility="invisible"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_centerInParent="true"
+        app:srcCompat="@drawable/ic_qr_code"
+        />
+
     <TextView
         android:id="@+id/tvSpaceInfo"
         android:visibility="invisible"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/btnOpenSpace"
+        android:layout_above="@+id/ivQRCode"
         android:layout_centerHorizontal="true"
         android:textSize="16sp"
         android:layout_marginBottom="15dp"
@@ -46,7 +55,7 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:textSize="11dp"
-        android:layout_below="@id/btnOpenSpace"
+        android:layout_below="@id/ivQRCode"
         android:text="Finish reservation"
         />
 
