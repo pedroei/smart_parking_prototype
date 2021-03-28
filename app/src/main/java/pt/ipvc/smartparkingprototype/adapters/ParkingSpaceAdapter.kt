@@ -75,14 +75,25 @@ class ParkingSpaceAdapter(
                     .setTitle("Confirmation")
                     .setMessage("Are you sure you want to book the space $section-$slot in $lot?")
                     .setNegativeButton("No") { dialogInterface: DialogInterface, i: Int ->
-                        Snackbar.make(holder.itemView,"Canceled", Snackbar.LENGTH_SHORT).show()
+                        Snackbar.make(holder.itemView, "Canceled", Snackbar.LENGTH_SHORT).show()
                     }
                     .setPositiveButton("Yes") { dialogInterface: DialogInterface, i: Int ->
                         val intSlot = Integer.parseInt(slot.toString())
-                        val spaceToBeReserved: ParkingSpaceItem = parkingSpaces[position].slots?.get(intSlot - 1)!!
-                        val res = dt.reserveSlot(spaceToBeReserved)
-                        if (res) Snackbar.make(holder.itemView, "Booked $section-$intSlot", Snackbar.LENGTH_SHORT).show()
-                        else Snackbar.make(holder.itemView, "You already have a space reserved", Snackbar.LENGTH_SHORT).show()
+                        val spaceToBeReserved: ParkingSpaceItem =
+                            parkingSpaces[position].slots?.get(intSlot - 1)!!
+                        if (spaceToBeReserved.reserved == false) {
+                            val res = dt.reserveSlot(spaceToBeReserved)
+                            if (res) Snackbar.make(holder.itemView,
+                                "Booked $section-$intSlot",
+                                Snackbar.LENGTH_SHORT).show()
+                            else Snackbar.make(holder.itemView,
+                                "You already have a space reserved",
+                                Snackbar.LENGTH_SHORT).show()
+                        } else {
+                            Snackbar.make(holder.itemView,
+                                "This space is already reserved",
+                                Snackbar.LENGTH_SHORT).show()
+                        }
                     }
                     .show()
             })

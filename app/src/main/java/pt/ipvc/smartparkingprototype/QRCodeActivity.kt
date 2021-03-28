@@ -7,12 +7,21 @@ import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.Toast
-import android.widget.Toast.LENGTH_SHORT
+import android.widget.Toast.LENGTH_LONG
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_q_r_code.*
+import org.json.JSONObject
 import pt.ipvc.smartparkingprototype.data.ParkingLotData
 import pt.ipvc.smartparkingprototype.models.ParkingLotItem
+import pt.ipvc.smartparkingprototype.models.ParkingSpaceItem
+import pt.ipvc.smartparkingprototype.raspberryApi.Endpoints
+import pt.ipvc.smartparkingprototype.raspberryApi.LightStateRequest
+import pt.ipvc.smartparkingprototype.raspberryApi.Pin
+import pt.ipvc.smartparkingprototype.raspberryApi.ServiceBuilder
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.lang.Exception
 
 class QRCodeActivity : AppCompatActivity() {
@@ -29,6 +38,8 @@ class QRCodeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_q_r_code)
+
+        val request = ServiceBuilder.buildService(Endpoints::class.java)
 
         // FAB clicks
         fab_add3.setOnClickListener {
@@ -67,10 +78,49 @@ class QRCodeActivity : AppCompatActivity() {
             btnOpenSpace.visibility = View.VISIBLE
 
             btnOpenSpace.setOnClickListener {
-                Toast.makeText(applicationContext, "Activate raspberry light", LENGTH_SHORT).show()
+                changeLightState(request, space, "on", it)
+            }
+
+            btnFinish.setOnClickListener {
+                changeLightState(request, space, "off", it)
             }
         } catch (e: Exception) {}
 
+    }
+
+    private fun changeLightState(
+        request: Endpoints,
+        space: ParkingSpaceItem,
+        state: String,
+        it: View
+    ) {
+        val call = request.changeLightState(space.id, LightStateRequest(state))
+
+        call.enqueue(object : Callback<Pin> {
+            override fun onResponse(call: Call<Pin>, response: Response<Pin>) {
+                if (state == "on") {
+                    Snackbar.make(it,
+                        "Parking space unlocked ${response.body()}",
+                        Snackbar.LENGTH_SHORT).show()
+                    btnOpenSpace.isEnabled = false
+                    btnFinish.visibility = View.VISIBLE
+                } else if (state == "off") {
+                    dt.reservedSpace = null
+                    tvNoQRCode.visibility = View.VISIBLE
+                    tvSpaceInfo.visibility = View.INVISIBLE
+                    tvSpaceInfo.text = ""
+                    btnOpenSpace.isEnabled = true
+                    btnOpenSpace.visibility = View.INVISIBLE
+                    btnFinish.visibility = View.INVISIBLE
+                }
+            }
+
+            override fun onFailure(call: Call<Pin>, t: Throwable) {
+                Toast.makeText(applicationContext, t.message, LENGTH_LONG).show()
+    //                        Snackbar.make(it, "Error communicating with Raspberry Pi", Snackbar.LENGTH_SHORT).show()
+            }
+
+        })
     }
 
     fun onMapButtonClicked() {

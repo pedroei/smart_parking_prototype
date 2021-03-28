@@ -27,7 +27,7 @@ class ParkingSlotAdapter(
     }
 
     override fun onBindViewHolder(holder: ParkingSlotViewHolder, position: Int) {
-        val curSlot = parkingSection.slots!![position]
+        val curSlot = parkingSection.slots?.filter { it.reserved == false }!![position]
         holder.itemView.apply {
             setOnClickListener(listener)
             tvParkingSlotTitle.text = "Slot ${curSlot.slot}"

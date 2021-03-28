@@ -15,43 +15,27 @@ class ParkingLotData {
         /* Slots */
         val slotsList1: ArrayList<ParkingSpaceItem> = ArrayList()
         slotsList1.add(ParkingSpaceItem(1, 1,false, 1))
-        slotsList1.add(ParkingSpaceItem(2, 2,false, 1))
-        slotsList1.add(ParkingSpaceItem(3, 3,true, 1))
 
         val slotsList2: ArrayList<ParkingSpaceItem> = ArrayList()
-        slotsList2.add(ParkingSpaceItem(4, 1, false, 5))
-        slotsList2.add(ParkingSpaceItem(5, 2, false, 5))
-        slotsList2.add(ParkingSpaceItem(6, 3, false, 5))
+        slotsList2.add(ParkingSpaceItem(2, 1, false, 5))
 
         val slotsList3: ArrayList<ParkingSpaceItem> = ArrayList()
-        slotsList3.add(ParkingSpaceItem(7, 1, false, 2))
-        slotsList3.add(ParkingSpaceItem(8, 2, true, 2))
-        slotsList3.add(ParkingSpaceItem(9, 3, true, 2))
+        slotsList3.add(ParkingSpaceItem(3, 1, false, 2))
 
         val slotsList4: ArrayList<ParkingSpaceItem> = ArrayList()
-        slotsList4.add(ParkingSpaceItem(10, 1, true, 3))
-        slotsList4.add(ParkingSpaceItem(11, 2, false, 3))
-        slotsList4.add(ParkingSpaceItem(12, 3, true, 3))
+        slotsList4.add(ParkingSpaceItem(4, 1, false, 3))
 
         val slotsList5: ArrayList<ParkingSpaceItem> = ArrayList()
-        slotsList5.add(ParkingSpaceItem(13, 1, true, 4))
-        slotsList5.add(ParkingSpaceItem(14, 2, true, 4))
-        slotsList5.add(ParkingSpaceItem(15, 3, true, 4))
-
+        slotsList5.add(ParkingSpaceItem(5, 1, false, 4))
         val slotsList6: ArrayList<ParkingSpaceItem> = ArrayList()
-        slotsList6.add(ParkingSpaceItem(16, 1,false, 7))
-        slotsList6.add(ParkingSpaceItem(17, 2,false, 7))
-        slotsList6.add(ParkingSpaceItem(18, 3,true, 7))
+        slotsList6.add(ParkingSpaceItem(6, 1,false, 7))
 
         val slotsList7: ArrayList<ParkingSpaceItem> = ArrayList()
-        slotsList7.add(ParkingSpaceItem(19, 1,false, 8))
-        slotsList7.add(ParkingSpaceItem(20, 2,false, 8))
-        slotsList7.add(ParkingSpaceItem(21, 3,true, 8))
+        slotsList7.add(ParkingSpaceItem(7, 1,false, 8))
 
         val slotsList8: ArrayList<ParkingSpaceItem> = ArrayList()
-        slotsList8.add(ParkingSpaceItem(22, 1,false, 6))
-        slotsList8.add(ParkingSpaceItem(23, 2,false, 6))
-        slotsList8.add(ParkingSpaceItem(24, 3,true, 6))
+        slotsList8.add(ParkingSpaceItem(8, 1,false, 6))
+        slotsList8.add(ParkingSpaceItem(9, 2,false, 6))
 
         /* Sections */
         val sectionList1: ArrayList<ParkingSpaceSection> = ArrayList()
@@ -109,6 +93,7 @@ class ParkingLotData {
     fun reserveSlot(space: ParkingSpaceItem): Boolean {
         if (this.reservedSpace == null) {
             this.reservedSpace = space
+            space.reserved = true
             return true
         }
         return false
